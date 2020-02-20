@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block page_title %}Main Page{% endblock %}
+{% block content %}
+    <div>
+    {% for data in room %}
+        Nazwa:&nbsp&nbsp {{ data.name }}<br>
+        Pojemność:&nbsp&nbsp {{ data.capacity }}<br>
+        Projektor:&nbsp&nbsp {{ data.projector }}<br>
+        <hr>
+        <a href="/">Wróć na stronę główną</a>
+        <form action="/room/delete/{{ data.id }}">
+            <input type="submit" value="Usuń salę!">
+        </form>
+    {% endfor %}
+    </div>
+    <div>
+    </div>
+{% endblock %}

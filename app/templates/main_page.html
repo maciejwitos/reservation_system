@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block page_title %}Main Page{% endblock %}
+{% block content %}
+    <table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Sala</th>
+      <th scope="col">Pojemność</th>
+      <th scope="col">Rzutnik</th>
+        <th>Status na dziś</th>
+        <th></th>
+        <th scope="col"><button><a href="/room/new/">Dodaj salę</a></button></th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for data in rooms %}
+    <tr>
+
+      <td>{{ data.name }}</td>
+      <td>{{ data.capacity }}</td>
+        {% if data.projector == True %}
+        <td>Tak</td>
+        {% else %}
+        <td>Nie</td>
+        {% endif %}
+
+        {% if data.id in id_list %}
+        <td>Zajęta</td>
+        {% else %}
+        <td>Wolna</td>
+        {% endif %}
+      <td>
+          <a href="/room/modify/{{ data.id }}">Edytuj</a><br>
+          <a href="/room/delete/{{ data.id }}">Usuń</a>
+      </td>
+    <td><button><a href="/reservation/add/{{ data.id }}/">Rezerwuj!</a></button></td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

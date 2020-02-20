@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block page_title %}Main Page{% endblock %}
+{% block content %}
+<form action="" method="post">
+{% csrf_token %}
+    {% for data in room %}
+    <p>Sala:&nbsp&nbsp{{ data.name }}</p><br>
+        <p>Pojemność sali:&nbsp&nbsp{{ data.capacity }}</p><br>
+        {% if data.projector == True %}
+        <p>Dostępność rzutnika:&nbsp&nbspTak</p><br>
+        {% else %}
+        <p>Dostępność rzutnika:&nbsp&nbspNie</p><br>
+        {% endif %}
+    {% endfor %}
+        <label>Data rezerwacji:&nbsp&nbsp<input type="date" name="date"></label>
+        <label>Dodatkowy komentarz:&nbsp&nbsp<textarea name="comment"></textarea></label>
+        <input type="submit" value="Rezerwuj!">
+</form>
+    <table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Data</th>
+      <th scope="col">Komentarz</th>
+        <th></th>
+    </tr>
+  </thead>
+  <tbody><br>
+  <div>
+
+  </div>
+  <h4>Wszystkie rezerwacje dla tej sali</h4>
+  {% for data in reservations %}
+    <tr>
+      <td>{{ data.date }}</td>
+      <td>{{ data.comment }}</td>
+      <td>
+          <a href="/reservation/delete/{{ data.id }}/">Usuń</a>
+      </td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

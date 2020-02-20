@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block page_title %}Main Page{% endblock %}
+{% block content %}
+    <table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Data</th>
+      <th scope="col">Sala</th>
+      <th scope="col">Komentarz</th>
+        <th></th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for data in reservations %}
+    <tr>
+
+      <td>{{ data.date }}</td>
+      <td>{{ data.room.name }}</td>
+      <td>{{ data.comment }}</td>
+      <td>
+          <a href="/reservation/delete/{{ data.id }}/">Usuń</a>
+      </td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
