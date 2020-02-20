@@ -2,7 +2,6 @@
 {% block page_title %}Main Page{% endblock %}
 {% block content %}
 <form action="" method="post">
-{% csrf_token %}
     {% for data in room %}
     <p>Sala:&nbsp&nbsp{{ data.name }}</p><br>
         <p>Pojemność sali:&nbsp&nbsp{{ data.capacity }}</p><br>

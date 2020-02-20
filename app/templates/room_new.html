@@ -2,7 +2,6 @@
 {% block page_title %}Main Page{% endblock %}
 {% block content %}
     <form action="" method="post">
-        {% csrf_token %}
         <label>Sala:&nbsp&nbsp<input type="text" name="name"></label><br>
         <label>Pojemność sali:&nbsp&nbsp<input type="number" name="capacity"></label><br>
         <label>Dostępność rzutnika:&nbsp&nbsp
