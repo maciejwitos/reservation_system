@@ -134,3 +134,19 @@ class TodayReservations(View):
         return render(request, 'today_status.html', {'reservations': reservations})
 
 
+class OpenSearch(View):
+
+    def post(self, request):
+        return render(request, 'search.html')
+
+
+class Search(View):
+
+    def get(self, request):
+        return render(request, 'search.html')
+
+
+    def post(self, request):
+
+
+        return render(request, 'search.html')

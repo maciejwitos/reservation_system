@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block page_title %}Main Page{% endblock %}
+{% block content %}
+    <section>
+        <div>
+            <form>
+                <h4>
+                    Nazwa sali:&nbsp&nbsp
+                    <input type="text" name="room_name">
+                </h4>
+                <h4>
+                    Ile potrzeba miejsc:&nbsp&nbsp
+                    <input type="number" name="room_capacity">
+                </h4><br>
+                <h4>
+                    Data:&nbsp&nbsp
+                    <input type="date" name="reservation_date">
+                </h4>
+                <h4>
+                    Rzutnik:&nbsp&nbsp
+                    <input type="radio" name="projector_is_available" value="True">Tak&nbsp&nbsp&nbsp
+                    <input type="radio" name="projector_is_available" value="False">Nie
+                </h4>
+            </form>
+        </div>
+    </section>
+{% endblock %}

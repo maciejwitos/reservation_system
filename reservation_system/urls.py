@@ -27,5 +27,6 @@ urlpatterns = [
     path('reservation/add/<int:id>/', MakeReservation.as_view()),
     path('reservation/all/', AllReservation.as_view()),
     path('reservation/today/', TodayReservations.as_view()),
-    path('reservation/delete/<int:id>/', DeleteReservation.as_view())
+    path('reservation/delete/<int:id>/', DeleteReservation.as_view()),
+    path('search/', Search.as_view()),
 ]
