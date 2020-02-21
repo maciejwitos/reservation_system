@@ -3,7 +3,7 @@ from django.views import View
 from app.models import *
 from django.http import HttpResponse
 import datetime
-
+from django.db.models import Q
 
 class MainPage(View):
 
@@ -15,7 +15,6 @@ class MainPage(View):
         for id in reservations:
             i = (id.get('room_id'))
             id_list.append(i)
-        print(id_list)
         return render(request, 'main_page.html', {"rooms": rooms,
                                                   "id_list": id_list})
 
@@ -147,6 +146,32 @@ class Search(View):
 
 
     def post(self, request):
+        room_name = request.POST.get('room_name')
+        room_capacity = request.POST.get('room_capacity')
+        reservation_date = request.POST.get('reservation_date')
+        projector_is_available = request.POST.get('projector_is_available')
+        if room_capacity == "":
+            room_capacity = 1
+        if reservation_date == "":
+            today = datetime.date.today()
+            reservations = Reservation.objects.filter(date=today).values('room_id')
+        else:
+            reservation_date = datetime.datetime.strptime(reservation_date, "%Y-%m-%d")
+            reservations = Reservation.objects.filter(date=reservation_date).values('room_id')
+        id_list = []
+        for id in reservations:
+            i = (id.get('room_id'))
+            id_list.append(i)
 
+        if projector_is_available is None:
+            rooms = Room.objects.filter(name__icontains=room_name,
+                                        capacity__gte=room_capacity)
+            return render(request, 'search_result.html', {'rooms': rooms,
+                                                          'id_list': id_list})
+        else:
+            rooms = Room.objects.filter(name__icontains=room_name,
+                                        capacity__gte=room_capacity,
+                                        projector=projector_is_available)
+            return render(request, 'search_result.html', {'rooms': rooms,
+                                                          'id_list': id_list})
 
-        return render(request, 'search.html')

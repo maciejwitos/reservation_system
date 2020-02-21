@@ -1,18 +1,27 @@
 {% extends 'base.html' %}
 {% block page_title %}Main Page{% endblock %}
 {% block content %}
-    <div>
+    <div class="container p-1">
     {% for data in room %}
         Nazwa:&nbsp&nbsp {{ data.name }}<br>
         Pojemność:&nbsp&nbsp {{ data.capacity }}<br>
-        Projektor:&nbsp&nbsp {{ data.projector }}<br>
+        Projektor:&nbsp&nbsp
+        {% if data.projector == True %}
+        <td>Tak</td>
+        {% else %}
+        <td>Nie</td>
+        {% endif %}
         <hr>
         <a href="/">Wróć na stronę główną</a>
+    {% endfor %}
+    </div>
+    <div class="container p-2">
+    <img src="https://images.unsplash.com/photo-1431540015161-0bf868a2d407?ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80"
+         class="img-fluid" alt="conference_room" width="800" height="400">
+    </div>
+    <div class="container p-3">
         <form action="/room/delete/{{ data.id }}">
             <input type="submit" value="Usuń salę!">
         </form>
-    {% endfor %}
-    </div>
-    <div>
     </div>
 {% endblock %}

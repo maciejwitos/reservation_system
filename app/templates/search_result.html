@@ -16,7 +16,7 @@
   {% for data in rooms %}
     <tr>
 
-      <td><a href="/room/{{ data.id }}/">{{ data.name }}</a></td>
+      <td>{{ data.name }}</td>
       <td>{{ data.capacity }}</td>
         {% if data.projector == True %}
         <td>Tak</td>

@@ -3,7 +3,7 @@
 {% block content %}
     <section>
         <div>
-            <form>
+            <form action="/search/result/" method="post">
                 <h4>
                     Nazwa sali:&nbsp&nbsp
                     <input type="text" name="room_name">
@@ -21,6 +21,7 @@
                     <input type="radio" name="projector_is_available" value="True">Tak&nbsp&nbsp&nbsp
                     <input type="radio" name="projector_is_available" value="False">Nie
                 </h4>
+                <button class="btn btn-outline-success my-0 my-sm-3" type="submit">Szukaj</button>
             </form>
         </div>
     </section>
